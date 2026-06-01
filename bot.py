@@ -92,13 +92,13 @@ async def add_deadline(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "❌ Формат:\n/add_deadline математика задача 2026-05-20 18:00"
         )
 
-
 app = ApplicationBuilder().token("8622668650:AAGAE0JK6cAB_FWspv1J1DMJUmgD1qyScRw").build()
 
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("add_deadline", add_deadline))
-app.add_handler(MessageHandler(filters.TEXT, message))
+if __name__ == "__main__":
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("add_deadline", add_deadline))
+    app.add_handler(MessageHandler(filters.TEXT, message))
 
-print("Бот запущен")
+    print("Бот запущен")
 
-app.run_polling()
+    app.run_polling()
