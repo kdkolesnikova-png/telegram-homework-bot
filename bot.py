@@ -1,3 +1,4 @@
+import asyncio
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -26,6 +27,7 @@ homeworks = {
     "📐 Математика": "📐 Домашка:\n№5 стр 12\n\n📅 Дедлайн: завтра 18:00",
     "📖 Русский": "📖 Домашка:\nУпр 15\n\n📅 Дедлайн: пятница",
     "💻 Информатика": "💻 Домашка:\nСделать презентацию\n\n📅 Дедлайн: понедельник",
+    "История": "Домашка\nНаписать конспект по лекции 48 и подготовить пересказ\n\n Дедлайн: втоорник",
     "📅 Расписание": "📅 Расписание:\n1. Математика\n2. Русский\n3. Информатика",
 }
 
@@ -36,6 +38,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ["📐 Математика"],
         ["📖 Русский"],
         ["💻 Информатика"],
+        ["История"],
         ["📅 Расписание"],
         ["⏰ Дедлайны"]
     ]
@@ -100,5 +103,8 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.TEXT, message))
 
     print("Бот запущен")
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
     app.run_polling()
